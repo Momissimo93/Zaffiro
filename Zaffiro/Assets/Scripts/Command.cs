@@ -9,4 +9,5 @@ public abstract class Command
     public abstract void Execute(Transform trans, float direction); 
     public virtual void Move (Transform trans, float direction) { }
     public virtual void JumpCommand(Transform trans) { }
+    public virtual void SwimmingCommand(Transform trans) { }
 }

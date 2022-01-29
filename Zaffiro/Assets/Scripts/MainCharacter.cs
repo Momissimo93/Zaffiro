@@ -7,6 +7,7 @@ public class MainCharacter : MonoBehaviour
     protected bool facingRight;
 
     [SerializeField] public int jumpForce;
+    [SerializeField] public int swimmingPower;
     [SerializeField] public float speed;
     [SerializeField] public float direction;
     [SerializeField] private LeftFoot leftFoot;
