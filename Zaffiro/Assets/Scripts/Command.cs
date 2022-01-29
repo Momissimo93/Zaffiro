@@ -6,6 +6,7 @@ public abstract class Command
 {
     protected MainCharacter mainCharacter;
     protected Rigidbody2D rb;
-    public abstract void Exectute(Transform trans, float direction); 
+    public abstract void Execute(Transform trans, float direction); 
     public virtual void Move (Transform trans, float direction) { }
+    public virtual void JumpCommand(Transform trans) { }
 }

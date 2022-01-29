@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveRight : Command
 {
-    public override void Exectute(Transform trans, float direction)
+    public override void Execute(Transform trans, float direction)
     {
         Move(trans, direction);
     }
@@ -17,7 +17,7 @@ public class MoveRight : Command
             if (trans.gameObject.GetComponent<Rigidbody2D>())
             {
                 rb = trans.gameObject.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2 (direction * mainCharacter.speed * Time.deltaTime, trans.position.y);
+                rb.velocity = new Vector2 (direction * mainCharacter.speed * Time.deltaTime, rb.velocity.y);
             }
             else
             {

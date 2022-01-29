@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class MainCharacterInputs : MonoBehaviour
 {
-    private MainCharacter mainCharacter;
+    [SerializeField] private float direction;
+    [SerializeField] MainCharacter mainCharacter;
+
     private Command moveLeft;
     private Command moveRight;
-    private float direction;
+    private Command jump;
+
     private float horizontalMove;
+
+    private bool isJumping;
+
+    protected Rigidbody2D rb;
+    //[SerializeField] public bool isOnGround;
 
     // Start is called before the first frame update
     void Start()
     {
+        jump = new Jump();
         moveLeft = new MoveLeft();
         moveRight = new MoveRight();
-        mainCharacter = gameObject.GetComponent<MainCharacter>();
+        mainCharacter = GameObject.FindObjectOfType<MainCharacter>();
     }
 
     // Update is called once per frame
@@ -25,6 +34,14 @@ public class MainCharacterInputs : MonoBehaviour
         {
             horizontalMove = Input.GetAxisRaw("Horizontal");
             direction = horizontalMove;
+
+            if (Input.GetButtonDown("Jump") && mainCharacter.isOnGround)
+            {
+                //human.isMoving = true;
+                //isJumping = true;
+                jump.Execute(mainCharacter.transform, direction);
+                Debug.Log("Jump");
+            }
         }
     }
     private void FixedUpdate()
@@ -34,15 +51,20 @@ public class MainCharacterInputs : MonoBehaviour
             direction = horizontalMove;
             if(horizontalMove > 0)
             {
-                moveRight.Exectute(mainCharacter.transform, direction);
+                moveRight.Execute(mainCharacter.transform, direction);
+                mainCharacter.SetRotation("right");
             }
             else if (horizontalMove < 0)
             {
-                moveLeft.Exectute(mainCharacter.transform, direction);
+                moveLeft.Execute(mainCharacter.transform, direction);
+                mainCharacter.SetRotation("left");
             }
             else if (horizontalMove == 0)
             {
-                mainCharacter.rigidbody2D.velocity = new Vector2(0, mainCharacter.rigidbody2D.velocity.y);
+                if(mainCharacter.rigidbody2D)
+                {
+                    mainCharacter.rigidbody2D.velocity = new Vector2(0, mainCharacter.rigidbody2D.velocity.y);
+                }
             }
         }
     }

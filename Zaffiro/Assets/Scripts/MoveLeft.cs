@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveLeft : Command
 {
-    public override void Exectute(Transform trans, float direction)
+    public override void Execute(Transform trans, float direction)
     {
         Move(trans, direction);
     }
@@ -13,6 +13,7 @@ public class MoveLeft : Command
         if(trans.gameObject.GetComponent<MainCharacter>())
         {
             mainCharacter = trans.gameObject.GetComponent<MainCharacter>();
+
             if (trans.gameObject.GetComponent<Rigidbody2D>())
             {
                 rb = trans.gameObject.GetComponent<Rigidbody2D>();
