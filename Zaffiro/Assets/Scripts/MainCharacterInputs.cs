@@ -51,11 +51,13 @@ public class MainCharacterInputs : MonoBehaviour
             direction = horizontalMove;
             if(horizontalMove > 0)
             {
+                mainCharacter.animator.SetFloat("Speed", mainCharacter.speed);
                 moveRight.Execute(mainCharacter.transform, direction);
                 mainCharacter.SetRotation("right");
             }
             else if (horizontalMove < 0)
             {
+                mainCharacter.animator.SetFloat("Speed", mainCharacter.speed);
                 moveLeft.Execute(mainCharacter.transform, direction);
                 mainCharacter.SetRotation("left");
             }
@@ -64,6 +66,7 @@ public class MainCharacterInputs : MonoBehaviour
                 if(mainCharacter.rigidbody2D)
                 {
                     mainCharacter.rigidbody2D.velocity = new Vector2(0, mainCharacter.rigidbody2D.velocity.y);
+                    mainCharacter.animator.SetFloat("Speed", 0);
                 }
             }
         }

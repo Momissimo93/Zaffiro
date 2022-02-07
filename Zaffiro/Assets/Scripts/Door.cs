@@ -15,7 +15,8 @@ public class Door : MonoBehaviour
     }
     IEnumerator ChangeLevelCoroutine(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
         levelManager.FlashIn();
+        yield return new WaitForSeconds(1f);
+        levelManager.LoadScene("Scene2");
     }
 }

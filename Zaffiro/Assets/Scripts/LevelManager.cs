@@ -5,17 +5,31 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Animator flash;
+    [SerializeField] private Animator flashIn;
+    [SerializeField] private Animator flashOut;
+    [SerializeField] private Animator fadeIn;
 
     void Start()
     {
-        if(SceneManager.GetActiveScene().name == "Scene1")
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
         {
-            FadeOut();
-        }
-        if(SceneManager.GetActiveScene().name == "Scene2")
-        {
-            FlashOut();
+            case "Scene1":
+                //FadeOut();
+                break;
+            case "Scene2":
+                FlashOut();
+                break;
+            case "Scene3":
+                FlashOut();
+                break;
+            case "Scene4":
+                FlashOut();
+                break;
+            case "Scene5":
+                FlashOut();
+                break;
         }
     }
 
@@ -24,37 +38,43 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
-    public void FadeOut()
-    {
-        //StartCoroutine(FadeOutCoroutine(0.3f));
-    }
-
     public void FlashIn()
     {
-        StartCoroutine(FlashInCoroutine(0.3f));
+        if(flashIn)
+        {
+            StartCoroutine(FlashInCoroutine(0.3f));
+        }
     }
     public void FlashOut()
     {
-        StartCoroutine(FlashOutCoroutine(0.3f));
+        if(flashOut)
+        {
+            StartCoroutine(FlashOutCoroutine(0.3f));
+        }
     }
-
-    /*IEnumerator FadeOutCoroutine(float seconds)
+    public void FadeIn()
     {
-        yield return new WaitForSeconds(seconds);
-        flash.SetTrigger("Fade_Out");
-    }*/
+        if (fadeIn)
+        {
+            StartCoroutine(FadeInCoroutine(0.3f));
+        }
+    }
 
     IEnumerator FlashInCoroutine(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        flash.SetTrigger("Flash_In");
-        yield return new WaitForSeconds(0.5f);
-        LoadScene("Scene2");
+        flashIn.SetTrigger("Flash_In");
     }
     IEnumerator FlashOutCoroutine(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        flash.SetTrigger("Flash_Out");
+        flashOut.SetTrigger("Flash_Out");
+    }
+
+    IEnumerator FadeInCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        fadeIn.SetTrigger("FadeIn");
     }
 }
 

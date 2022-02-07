@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class OxygenBar : MonoBehaviour
 {
+    [SerializeField] LevelManager levelManager;
     private float timeRemaining;
     private const float timerMax = 20f;
     public Slider slider;
@@ -24,6 +25,8 @@ public class OxygenBar : MonoBehaviour
         if(timeRemaining <= 0)
         {
             timeRemaining = 0;
+            levelManager.LoadScene("Scene4");
+
         }
         else if (timeRemaining > 0)
         {

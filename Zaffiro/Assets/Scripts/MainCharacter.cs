@@ -94,13 +94,13 @@ public class MainCharacter : MonoBehaviour
             if (leftFoot.IsOnGround() == true || rightFoot.IsOnGround() == true)
             {
                 isOnGround = true;
-                //animator.SetBool("isJumping", false);
+                animator.SetBool("isJumping", false);
 
             }
             else if (leftFoot.IsOnGround() == false || rightFoot.IsOnGround() == false)
             {
                 isOnGround = false;
-                //animator.SetBool("isJumping", true);
+                animator.SetBool("isJumping", true); 
             }
     }
     protected void SetAnimator()
